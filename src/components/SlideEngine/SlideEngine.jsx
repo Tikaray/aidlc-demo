@@ -24,6 +24,21 @@ export default function SlideEngine({ slides }) {
   const next = useCallback(() => goTo(current + 1), [current, goTo])
   const prev = useCallback(() => goTo(current - 1), [current, goTo])
 
+  // Touch swipe support
+  const touchRef = useRef({ startX: 0, startY: 0 })
+  const onTouchStart = useCallback((e) => {
+    touchRef.current.startX = e.touches[0].clientX
+    touchRef.current.startY = e.touches[0].clientY
+  }, [])
+  const onTouchEnd = useCallback((e) => {
+    const dx = e.changedTouches[0].clientX - touchRef.current.startX
+    const dy = e.changedTouches[0].clientY - touchRef.current.startY
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx < 0) next()
+      else prev()
+    }
+  }, [next, prev])
+
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next() }
@@ -37,7 +52,7 @@ export default function SlideEngine({ slides }) {
   const CurrentSlide = slides[current]?.component
 
   return (
-    <div className="slide-engine" ref={containerRef}>
+    <div className="slide-engine" ref={containerRef} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <ParticleBackground />
       <MouseSpotlight />
       <div className="slide-viewport">
@@ -55,12 +70,12 @@ export default function SlideEngine({ slides }) {
             onClick={() => goTo(1)}
             aria-label="返回目录"
             style={{
-              position: 'absolute', top: 24, right: 28,
+              position: 'absolute', top: 12, right: 12,
               background: 'rgba(20,27,45,0.7)', backdropFilter: 'blur(8px)',
               border: '1px solid var(--color-border)',
               color: 'var(--color-text-secondary)',
-              fontSize: 13, padding: '6px 14px', borderRadius: 8,
-              cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6,
+              fontSize: 12, padding: '5px 10px', borderRadius: 8,
+              cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4,
               transition: 'all 0.25s ease', zIndex: 5,
             }}
             onMouseEnter={e => {

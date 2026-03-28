@@ -212,3 +212,58 @@ code,pre { font-family: var(--font-mono); }
   color: var(--color-primary-light);
   letter-spacing:0.5px;
 }
+
+/* ═══════════════════════════════════════════════════
+   MOBILE RESPONSIVE — does NOT affect desktop (>768px)
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  html,body,#root { font-size: 14px; overflow: hidden; }
+
+  /* Allow slide content to scroll vertically on mobile */
+  .slide-viewport {
+    padding: 16px 16px !important;
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slide-container {
+    justify-content: flex-start !important;
+    min-height: min-content;
+    height: auto !important;
+    padding-bottom: 20px;
+  }
+
+  /* Disable heavy effects on mobile for performance */
+  .glow-card::before,
+  .glow-card::after,
+  .hover-border-glow::before,
+  .shimmer::after { display: none !important; }
+
+  .glow-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .tilt-card { transform: none !important; perspective: none !important; }
+
+  /* Reduce animation intensity */
+  .stagger-item { animation-duration: 0.3s !important; }
+  .float { animation: none !important; }
+  .pulse-glow { animation: none !important; }
+}
+
+/* Mobile layout utilities — used via inline style overrides in components */
+@media (max-width: 768px) {
+  /* Modal responsive */
+  .mobile-modal-inner {
+    width: 95% !important;
+    max-width: 95% !important;
+    max-height: 90vh !important;
+  }
+
+  /* Code blocks smaller font */
+  pre { font-size: 12px !important; line-height: 1.6 !important; }
+
+  /* Tag badge smaller */
+  .tag-badge { font-size: 11px !important; padding: 3px 10px !important; }
+}

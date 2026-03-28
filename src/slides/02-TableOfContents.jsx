@@ -47,10 +47,13 @@ function TocCard({ s, i, goTo }) {
   )
 }
 
+import useMobile from '../hooks/useMobile'
+
 export default function TableOfContents({ goTo }) {
+  const m = useMobile()
   return (
     <SlideLayout title="今天聊什么">
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginTop: 10 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 14 : 20, marginTop: 10 }}>
         {sections.map((s, i) => (
           <TocCard key={i} s={s} i={i} goTo={goTo} />
         ))}

@@ -1,8 +1,10 @@
 import React from 'react'
+import useMobile from '../../hooks/useMobile'
 
 export default function FlowChart({ steps, activeIndex = -1 }) {
+  const m = useMobile()
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, flexWrap: 'wrap', flexDirection: m ? 'column' : 'row' }}>
       {steps.map((step, i) => (
         <React.Fragment key={i}>
           <div
@@ -26,8 +28,9 @@ export default function FlowChart({ steps, activeIndex = -1 }) {
           {i < steps.length - 1 && (
             <div className="stagger-item" style={{
               animationDelay: `${i * 0.12 + 0.06}s`,
-              fontSize: 22, color: 'var(--color-primary-light)', padding: '0 10px',
+              fontSize: 22, color: 'var(--color-primary-light)', padding: m ? '4px 0' : '0 10px',
               textShadow: '0 0 10px var(--color-primary-glow)',
+              transform: m ? 'rotate(90deg)' : 'none',
             }}>→</div>
           )}
         </React.Fragment>
