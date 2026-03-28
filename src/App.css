@@ -1,0 +1,214 @@
+:root {
+  --color-bg: #0a0e1a;
+  --color-surface: #141b2d;
+  --color-surface-hover: #1a2340;
+  --color-primary: #3b82f6;
+  --color-primary-light: #60a5fa;
+  --color-primary-glow: rgba(59,130,246,0.3);
+  --color-accent: #f59e0b;
+  --color-accent-glow: rgba(245,158,11,0.3);
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-border: #1e293b;
+  --color-code-bg: #0d1117;
+  --font-sans: 'PingFang SC','Microsoft YaHei',-apple-system,sans-serif;
+  --font-mono: 'SF Mono','Fira Code','Consolas',monospace;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+html,body,#root {
+  width:100%; height:100%; overflow:hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size:16px; line-height:1.6;
+}
+code,pre { font-family: var(--font-mono); }
+
+/* Staggered content animation */
+.stagger-item {
+  opacity:0; transform:translateY(24px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes fadeInUp {
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Glow card hover effect */
+.glow-card {
+  position:relative; overflow:hidden;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+.glow-card::before {
+  content:''; position:absolute; top:-50%; left:-50%;
+  width:200%; height:200%;
+  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 60%);
+  opacity:0; transition: opacity 0.5s ease;
+  pointer-events:none; z-index:0;
+}
+.glow-card::after {
+  content:''; position:absolute; inset:0;
+  border-radius:inherit;
+  background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(245,158,11,0.03));
+  opacity:0; transition: opacity 0.35s ease;
+  pointer-events:none; z-index:0;
+}
+.glow-card:hover {
+  transform:translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 48px rgba(59,130,246,0.2), 0 0 20px rgba(59,130,246,0.08);
+  border-color: var(--color-primary) !important;
+  background: var(--color-surface-hover) !important;
+}
+.glow-card:hover::before { opacity:1; }
+.glow-card:hover::after { opacity:1; }
+.glow-card:active { transform:translateY(-2px) scale(0.99); }
+
+/* Hover lift — lighter version for inline items */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(59,130,246,0.12);
+  border-color: rgba(59,130,246,0.3) !important;
+}
+
+/* Hover glow text */
+.hover-glow-text {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.hover-glow-text:hover {
+  color: var(--color-primary-light) !important;
+  text-shadow: 0 0 20px var(--color-primary-glow);
+}
+
+/* Hover icon bounce */
+.hover-bounce {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.hover-bounce:hover {
+  transform: scale(1.15) rotate(-3deg);
+}
+
+/* Hover border glow animation */
+.hover-border-glow {
+  position:relative;
+  transition: border-color 0.3s ease;
+}
+.hover-border-glow::before {
+  content:''; position:absolute; inset:-1px;
+  border-radius:inherit; padding:1px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-success));
+  background-size:300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity:0; transition: opacity 0.4s ease;
+  pointer-events:none;
+}
+.hover-border-glow:hover::before {
+  opacity:1;
+  animation: gradientShift 2s ease infinite;
+}
+
+/* Magnetic tilt on hover (via JS, but base styles) */
+.tilt-card {
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+/* Floating animation */
+.float { animation: float 6s ease-in-out infinite; }
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-10px); }
+}
+
+/* Pulse glow */
+.pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 20px var(--color-primary-glow); }
+  50% { box-shadow: 0 0 40px var(--color-primary-glow), 0 0 60px rgba(59,130,246,0.1); }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Shimmer effect */
+.shimmer {
+  position:relative; overflow:hidden;
+}
+.shimmer::after {
+  content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  animation: shimmer 3s infinite;
+}
+@keyframes shimmer {
+  0% { left:-100%; }
+  100% { left:100%; }
+}
+
+/* Number counter animation */
+.count-up {
+  animation: countPop 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+  opacity:0; transform:scale(0.5);
+}
+@keyframes countPop {
+  to { opacity:1; transform:scale(1); }
+}
+
+/* Slide in from different directions */
+@keyframes slideInRight {
+  from { opacity:0; transform:translateX(80px); }
+  to { opacity:1; transform:translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity:0; transform:translateX(-80px); }
+  to { opacity:1; transform:translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity:0; transform:scale(0.9); }
+  to { opacity:1; transform:scale(1); }
+}
+
+/* Background grid pattern */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Animated border gradient */
+.border-gradient {
+  position:relative; border-radius:16px; padding:1px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-success));
+  background-size:200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+.border-gradient > * {
+  background: var(--color-surface); border-radius:15px;
+}
+@keyframes gradientShift {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+/* Tag badge */
+.tag-badge {
+  display:inline-block; font-size:12px; font-weight:600;
+  padding:4px 14px; border-radius:20px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(245,158,11,0.15));
+  border:1px solid rgba(59,130,246,0.2);
+  color: var(--color-primary-light);
+  letter-spacing:0.5px;
+}
