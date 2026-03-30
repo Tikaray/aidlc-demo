@@ -16,9 +16,9 @@ export default function Ending() {
         gap: m ? 16 : 48, justifyContent: 'center', alignItems: 'center',
       }}>
         {[
+          { num: '≤1h', label: '从零到可运行', sub: '两个爬虫实测' },
+          { num: '23', label: '自动生成文件', sub: '两项目合计' },
           { num: '55%', label: '编码速度提升', sub: 'GitHub Research' },
-          { num: '3h', label: '每篇内容节省', sub: 'Landbase Survey' },
-          { num: '72%', label: '企业已采用AI', sub: 'McKinsey 2025' },
         ].map((item, i) => (
           <div key={i} className="count-up" style={{
             animationDelay: `${0.5 + i * 0.15}s`,

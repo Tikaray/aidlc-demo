@@ -5,7 +5,7 @@ export default function Cover() {
   return (
     <TitleSlide
       title="AIDLC：AI驱动的开发新范式"
-      subtitle="如何将AI工具融入日常工作，提升产品设计与新媒体运营效率"
+      subtitle="AI工具在爬虫开发中的应用"
       meta="2026年3月 · 内部分享"
     />
   )
