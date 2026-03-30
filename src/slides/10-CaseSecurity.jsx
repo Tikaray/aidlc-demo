@@ -100,7 +100,7 @@ function ConcernCard({ item, i, expanded, onToggle }) {
 export default function CaseSecurity() {
   const [expanded, setExpanded] = useState(-1)
   return (
-    <SlideLayout tag="产品设计与开发" title="案例5：AI开发的代码安全" subtitle="四大安全顾虑及AIDLC的应对方案（点击展开详情）">
+    <SlideLayout tag="AIDLC实战 · 自修复爬虫" title="Step 5：AI开发的代码安全" subtitle="四大安全顾虑及AIDLC的应对方案（点击展开详情）">
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
         {concerns.map((item, i) => (
           <ConcernCard key={i} item={item} i={i} expanded={expanded === i} onToggle={() => setExpanded(expanded === i ? -1 : i)} />

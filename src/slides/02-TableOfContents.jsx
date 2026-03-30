@@ -4,9 +4,9 @@ import useTilt from '../hooks/useTilt'
 
 const sections = [
   { title: '什么是AIDLC', desc: '方法论介绍与核心流程', slide: 2, icon: '🧠', color: '#3b82f6' },
-  { title: '产品设计与开发案例', desc: '需求分析 · 架构设计 · 代码生成 · 测试部署 · 安全', slide: 5, icon: '💻', color: '#8b5cf6' },
-  { title: '新媒体运营案例', desc: '内容策划 · 活动方案 · 文案生成', slide: 11, icon: '📱', color: '#f59e0b' },
-  { title: '心得与总结', desc: '效率数据 · 实践建议 · 展望', slide: 15, icon: '💡', color: '#10b981' },
+  { title: 'AIDLC实战：自修复爬虫', desc: '需求分析 → 架构设计 → 代码生成 → 测试部署 → 安全', slide: 5, icon: '🕷️', color: '#ef4444' },
+  { title: '效率提升与数据', desc: '行业权威数据 · 实际项目对比', slide: 13, icon: '📊', color: '#f59e0b' },
+  { title: '心得与总结', desc: '实践感悟 · 落地建议 · 展望', slide: 14, icon: '💡', color: '#10b981' },
 ]
 
 function TocCard({ s, i, goTo }) {

@@ -60,7 +60,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000`
 
 export default function CaseTestDeploy() {
   return (
-    <SlideLayout tag="产品设计与开发" title="案例4：AI辅助测试与部署" subtitle="AI不只写代码——还能生成测试用例、部署指南和运维文档">
+    <SlideLayout tag="AIDLC实战 · 自修复爬虫" title="Step 4：AI辅助测试与部署" subtitle="AI不只写代码——还能生成测试用例、部署指南和运维文档">
       <div style={{ display: 'flex', gap: 20 }}>
         <div style={{ flex: 3 }}>
           <CodeBlock title="AI生成的测试方案与部署指南" code={testOutput} />
